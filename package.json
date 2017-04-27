@@ -1,6 +1,6 @@
 {
   "name": "promise-stem",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Promise Stem allows you to put together results from multiple separate JavaScript promise chains.",
   "main": "index.js",
   "scripts": {
