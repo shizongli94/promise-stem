@@ -1,6 +1,6 @@
 # Promise Stem
 
-Promise Stem allows you to put together results from two separate JavaScript promise chains.
+Promise Stem allows you to put together results from multiple separate JavaScript promise chains.
 
 ## Promise Tree
 
