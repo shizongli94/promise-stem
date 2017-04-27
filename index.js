@@ -8,7 +8,7 @@ function Stem (how_many, resolve_me){
     this.resolve_me = resolve_me;
     this.count = 0;
     this.bank = {
-        has_err: () => {},
+        hasErr: () => {},
         err_list:[],
         err_json:{},
         recent_err : undefined,
@@ -46,7 +46,7 @@ module.exports.glue = {
         this.current_stem.count++;
         if (this.has_err === true){
             this.has_err = false;
-            this.current_stem.bank.has_err = () => {throw this.current_stem.bank.err_json};
+            this.current_stem.bank.hasErr = () => {throw this.current_stem.bank.err_json};
             this.current_stem.bank.err_list.push(value);
             this.current_stem.bank.err_json[name] = value;
             this.current_stem.bank.recent_err = value;
