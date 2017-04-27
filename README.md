@@ -2,15 +2,16 @@
 
 Promise Stem allows you to put together results from multiple separate JavaScript promise chains.
 
-## Promise Tree
+## Related Package - Promise Tree
 
 Promise Tree is another package I write. It takes a promise chain, and branch it out into multiple chains, thus enabling conditional promise usage. It's exactly the opposite to Promise Stem. You can find it in the following links.
 
 ### GitHub
 https://github.com/shizongli94/promise-tree
+
 ### NPM
 https://www.npmjs.com/package/promise-tree
-###
+
 
 ## Installing
 
