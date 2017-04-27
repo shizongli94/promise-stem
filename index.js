@@ -7,7 +7,14 @@ function Stem (how_many, resolve_me){
     this.do_list = [];
     this.resolve_me = resolve_me;
     this.count = 0;
-    this.bank = {};
+    this.bank = {
+        has_err: false,
+        err_list:[],
+        err_json:{},
+        recent_err : undefined,
+        recent : undefined,
+        list:[]
+    };
     this.then = (onFulfilled, onRejected) => {
         this.do_list.push({
             name: "then",
@@ -29,11 +36,21 @@ function Stem (how_many, resolve_me){
 module.exports.Stem = Stem;
 module.exports.glue = {
     current_stem: undefined,
+    has_err : false,
     use : function(name, value){
         if (!(this.current_stem instanceof Stem)) throw new TypeError("glue: Tree stem is not an instance of Stem");
         if (typeof name !== "string") throw new TypeError("glue: Name must be a string");
         this.current_stem.bank[name] = value;
+        this.current_stem.bank.list.push(value);
+        this.current_stem.bank.recent = value;
         this.current_stem.count++;
+        if (this.has_err === true){
+            this.has_err = false;
+            this.current_stem.bank.has_err = true;
+            this.current_stem.bank.err_list.push(value);
+            this.current_stem.bank.err_json[name] = value;
+            this.current_stem.bank.recent_err = value;
+        }
         if (this.current_stem.count >= this.current_stem.how_many){
             let promise = new Promise((resolve, reject)=>{
                 if (this.current_stem.resolve_me){
@@ -57,6 +74,10 @@ module.exports.glue = {
     },
     along : function(stem){
         this.current_stem = stem;
+        return this;
+    },
+    err : function(has_err){
+        this.has_err = has_err;
         return this;
     }
 };
